@@ -248,9 +248,29 @@ namespace Simple_Student_Management_Project
 
         static void DeleteStudentRecord()
         {
+            Console.Write("Enter the name of the student to delete: ");
+            string StudentName = Console.ReadLine().ToUpper();
 
-            
+            int index = Array.IndexOf(names, StudentName);
 
+            if (index == -1 || index >= StudentCounter)
+            {
+                Console.WriteLine("Student not found.");
+                return;
+            }
+
+
+            for (int i = index; i < StudentCounter - 1; i++)
+            {
+                names[i] = names[i + 1];
+                Ages[i] = Ages[i + 1];
+                marks[i] = marks[i + 1];
+                dates[i] = dates[i + 1];
+            }
+
+            StudentCounter--;
+
+            Console.WriteLine("Student record deleted successfully.");
         }
     }
 }
